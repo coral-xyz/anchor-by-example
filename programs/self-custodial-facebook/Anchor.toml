@@ -1,0 +1,15 @@
+[features]
+seeds = true
+skip-lint = false
+[programs.devnet]
+self_custodial_facebook = "8vBaXtoP9dBt97jA9FQz9NyuchRpFWEuiLxLLj7MYbnQ"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
