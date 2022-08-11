@@ -19,7 +19,8 @@ export function Navigation({ navigation, className }) {
                   <Link href={link.href}>
                     <a
                       className={clsx(
-                        'block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full',
+                        'flex w-full flex-col pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full',
+                        !link.active && 'opacity-50',
                         {
                           'font-semibold text-sky-500 before:bg-sky-500':
                             link.href === router.pathname,
@@ -27,12 +28,11 @@ export function Navigation({ navigation, className }) {
                             link.href !== router.pathname,
                         },
                         {
-                        'pointer-events-none': 
-                          link.active === false,
+                          'pointer-events-none': link.active === false,
                         }
                       )}
                     >
-                      {link.title} {link.active === false ? <span className='items-center bg-slate-800 px-1.5 h-4 rounded-full p-px font-medium text-sky-300 text-xs'>coming 🔜</span> : ''}
+                      {link.title}
                     </a>
                   </Link>
                 </li>

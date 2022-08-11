@@ -40,15 +40,15 @@ export function Hero() {
             </div>
             <div className="relative">
               <p className="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-                Anchor
+                Anchor By Example
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Solana&apos;s Sealevel runtime framework
+                An Introduction to Anchor with simple examples.
               </p>
               <div className="mt-8 flex space-x-4 md:justify-center lg:justify-start">
                 <ButtonLink href="/">Get started</ButtonLink>
                 <ButtonLink
-                  href="https://github.com/coral-xyz/anchor"
+                  href="https://github.com/coral-xyz/anchor-by-example"
                   variant="secondary"
                 >
                   View on GitHub

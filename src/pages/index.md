@@ -4,17 +4,17 @@ pageTitle: Anchor By Example - Introduction
 description: Anchor is a framework for Solana's Sealevel runtime providing several convenient developer tools for writing smart contracts.
 ---
 
-Anchor-by-example is an open source repository containing serveral Solana program example written in anchor framework. {% .lead %}
+Anchor-by-example is an open source repository containing serveral Solana program example written in Anchor. {% .lead %}
 
 {% link-grid %}
 
-{% link-grid-link title="Hello World" icon="installation" href="/docs/hello-world" description="Step-by-step guides to setting up your system and installing Anchor." /%}
+{% link-grid-link title="Oficial Documentation" icon="theming" href="https://www.anchor-lang.com" description="A CLI is provided to support building and managing an Anchor workspace." /%}
 
-{% link-grid-link title="Automated Market Maker (AMM)" icon="presets" href="#" description="Brief intro to programming on Solana." /%}
+{% link-grid-link title="Installation" icon="plugins" href="https://www.anchor-lang.com/docs/installation" description="Step-by-step guide to setting up your system and installing Anchor" /%}
 
-{% link-grid-link title="NFT Marketplace" icon="plugins" href="#" description="High-Level Overview of an Anchor program." /%}
+{% link-grid-link title="Hello World" icon="installation" href="/docs/hello-world" description="This program will log our hello world message into program's on-chain transaction log. We will simply use msg!() macro for logging the hello world." /%}
 
-{% link-grid-link title="Lending Borrowing Protocol" icon="theming" href="#" description="A CLI is provided to support building and managing an Anchor workspace." /%}
+{% link-grid-link title="On-Chain Voting" icon="presets" href="/docs/onchain-voting" description="In this program, we are going to build a decentralized on-chain voting system on solana. Where users can vote on our favourite GM and GN. Let's see who will win 🚀." /%}
 
 {% /link-grid %}
 
