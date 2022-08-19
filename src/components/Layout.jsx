@@ -95,7 +95,7 @@ export function Layout({ children, title, navigation, tableOfContents }) {
     <>
       <Header navigation={navigation} />
 
-      {isHomePage && <Hero />}
+      {/* {isHomePage && <Hero />} */}
 
       <div className="relative mx-auto flex max-w-8xl justify-center sm:px-2 lg:px-8 xl:px-12">
         {/* Right Navigation bar */}
