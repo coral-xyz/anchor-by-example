@@ -40,10 +40,16 @@ const navigation = [
         active: true,
       },
       {
+        title: 'Job Board - Convention Over Configuration',
+        href: '/docs/jobs',
+        active: true,
+      },
+      {
         title: 'Cross-Program Invocations',
         href: '/docs/cross-program-invocations',
         active: false,
       },
+
     ],
   },
   {
