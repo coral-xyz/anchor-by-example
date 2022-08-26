@@ -83,6 +83,11 @@ const navigation = [
         href: '/docs/Closing Accounts',
         active: false,
       },
+      {
+        title: 'Sandwich Instructions',
+        href: '/docs/sandwich',
+        active: true,
+      },
     ],
   },
 ]
