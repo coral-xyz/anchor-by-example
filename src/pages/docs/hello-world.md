@@ -58,10 +58,10 @@ We are going to deploy on `devnet`. Here is our deployment checklist 🚀
 2. Run `anchor keys list` to display the keypair's public key and copy it into your `declare_id!` macro at the top of `lib.rs`.
 3. Run `anchor build` again. This step is necessary to include the new program id in the binary.
 4. Change the `provider.cluster` variable in `Anchor.toml` to `devnet`.
-5. Run `solana config set --url https://api.devnet.solana.com` to change the network interacting with to devnet.
-6. Run `solana airdrop 2` to give yourself 2 sol to deploy the contract.
-5. Run `anchor deploy`.
-6. Run `anchor test`.
+5. Run `solana config set --url https://api.devnet.solana.com` to change the network interacting with to `devnet`.
+6. Run `solana airdrop 2` to give yourself `2 sol` to deploy the contract to `devnet`.
+7. Run `anchor deploy`.
+8. Run `anchor test`.
 
 ## On-Chain Result
 ```shell
