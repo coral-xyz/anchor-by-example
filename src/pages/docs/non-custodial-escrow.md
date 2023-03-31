@@ -154,7 +154,7 @@ pub struct Accept<'info> {
 }
 ```
 
-Our last instruction is `cancle`. If the `seller` changes their minds, they are free to close their escrows without anyone's consent.
+Our last instruction is `cancel`. If the `seller` changes their minds, they are free to close their escrows without anyone's consent.
 ```rust
 pub fn cancel(ctx: Context<Cancel>) -> Result<()> {
     // return seller's x_token back to him/her
