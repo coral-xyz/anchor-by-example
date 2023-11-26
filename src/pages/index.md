@@ -4,7 +4,7 @@ pageTitle: Anchor By Example - Introduction
 description: Anchor is a framework for Solana's Sealevel runtime providing several convenient developer tools for writing smart contracts.
 ---
 
-Anchor-by-example is an open source repository containing serveral Solana program example written in Anchor. {% .lead %}
+Anchor-by-example is an open source repository containing several Solana program example written in Anchor. {% .lead %}
 
 {% link-grid %}
 
