@@ -26,5 +26,11 @@ Next, run the development server:
 ```bash
 npm run dev
 ```
+### By default, the package command corresponds to a package npm script:
+npm run package -- --arch="ia32"
+# If there is no package script:
+npx electron-forge package --arch="ia32"
+
+</npm run make -- --arch="ia32,x64"\>
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
