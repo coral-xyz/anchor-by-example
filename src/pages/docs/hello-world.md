@@ -11,7 +11,7 @@ To initialize the project, simply run:
 anchor init hello-world
 ```
 ## Program's Code
-Let's wirte our first hello world program a.k.a smart contract in anchor or just copy-pasta the following code into your `lib.rs` file 😉.
+Let's write our first hello world program a.k.a smart contract in anchor or just copy-pasta the following code into your `lib.rs` file 😉.
 ```rust
 use anchor_lang::prelude::*;
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
