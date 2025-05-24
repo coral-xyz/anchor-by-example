@@ -1,6 +1,9 @@
-import * as React from 'react';
+import React, { ReactElement } from 'react';
 
-const svgs = {
+type IconType = 'copied' | 'checkmark-circle' | 'copy' | 'information-circle' | 'warning';
+type IconColor = 'inherit' | 'green' | string;
+
+const svgs: Record<IconType, ReactElement> = {
   copied: (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
       <title>Copied</title>
@@ -90,7 +93,12 @@ const svgs = {
   )
 };
 
-export function Icon({ icon, color = 'inherit' }) {
+interface IconProps {
+  icon: IconType;
+  color?: IconColor;
+}
+
+export function Icon({ icon, color = 'inherit' }: IconProps) {
   return (
     <span className="icon">
       {svgs[icon] || null}

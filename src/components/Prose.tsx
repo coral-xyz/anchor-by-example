@@ -1,6 +1,18 @@
 import clsx from 'clsx'
+import { ReactNode } from 'react'
 
-export function Prose({ as: Component = 'div', className, ...props }) {
+interface ProseProps {
+  as?: 'div' | 'article' | 'section';
+  className?: string;
+  children?: ReactNode;
+  [key: string]: any;
+}
+
+export function Prose({ 
+  as: Component = 'div', 
+  className, 
+  ...props 
+}: ProseProps) {
   return (
     <Component
       className={clsx(

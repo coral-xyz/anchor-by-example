@@ -1,26 +1,35 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, ReactNode, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import Router from 'next/router'
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react'
 
 const docSearchConfig = {
-  appId: process.env.NEXT_PUBLIC_DOCSEARCH_APP_ID,
-  apiKey: process.env.NEXT_PUBLIC_DOCSEARCH_API_KEY,
-  indexName: process.env.NEXT_PUBLIC_DOCSEARCH_INDEX_NAME,
+  appId: process.env.NEXT_PUBLIC_DOCSEARCH_APP_ID || '',
+  apiKey: process.env.NEXT_PUBLIC_DOCSEARCH_API_KEY || '',
+  indexName: process.env.NEXT_PUBLIC_DOCSEARCH_INDEX_NAME || '',
 }
 
-function Hit({ hit, children }) {
+interface HitProps {
+  hit: {
+    url: string;
+    [key: string]: any;
+  };
+  children: ReactNode;
+}
+
+function Hit({ hit, children }: HitProps) {
   return (
-    <Link href={hit.url}>
-      <a>{children}</a>
+    <Link href={hit.url} className="DocSearch-Hit-link">
+      {children}
     </Link>
   )
 }
 
 export function Search() {
   let [isOpen, setIsOpen] = useState(false)
-  let [modifierKey, setModifierKey] = useState()
+  let [modifierKey, setModifierKey] = useState<string>()
+  let searchButtonRef = useRef<HTMLButtonElement>(null)
 
   const onOpen = useCallback(() => {
     setIsOpen(true)
@@ -30,7 +39,12 @@ export function Search() {
     setIsOpen(false)
   }, [setIsOpen])
 
-  useDocSearchKeyboardEvents({ isOpen, onOpen, onClose })
+  useDocSearchKeyboardEvents({ 
+    isOpen, 
+    onOpen, 
+    onClose,
+    searchButtonRef: searchButtonRef as React.RefObject<HTMLButtonElement>
+  })
 
   useEffect(() => {
     setModifierKey(
@@ -42,6 +56,7 @@ export function Search() {
     <>
       <button
         type="button"
+        ref={searchButtonRef}
         className="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pl-4 md:pr-3.5 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 dark:md:bg-slate-800/75 dark:md:ring-inset dark:md:ring-white/5 dark:md:hover:bg-slate-700/40 dark:md:hover:ring-slate-500 lg:w-96"
         onClick={onOpen}
       >
@@ -69,7 +84,7 @@ export function Search() {
             onClose={onClose}
             hitComponent={Hit}
             navigator={{
-              navigate({ itemUrl }) {
+              navigate({ itemUrl }: { itemUrl: string }) {
                 Router.push(itemUrl)
               },
             }}

@@ -3,13 +3,10 @@ const { withPlausibleProxy } = require('next-plausible')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withMarkdoc()({
-  swcMinify: true,
   reactStrictMode: true,
-  pageExtensions: ['js', 'jsx', 'md'],
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md'],
   experimental: {
     scrollRestoration: true,
-    legacyBrowsers: false,
-    images: { allowFutureImage: true },
   },
 })
 

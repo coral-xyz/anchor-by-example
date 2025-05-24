@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("AkN2PoD2JrWyYzmB6FEbWBncQbsMxhYH5otfmQJFMsdC");
+declare_id!("9837jDBTMAxXToUDFcquVTd5zERanngPC1ihjXNPUiac");
 
 #[program]
 pub mod onchain_voting {

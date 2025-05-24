@@ -26,7 +26,7 @@ pub mod self_custodial_facebook {
     pub fn create_facebook(ctx: Context<Initialize>, name: String, status: String, twitter: String) -> Result<()> {
         // setting userdata in user's account
         let users_account_data = &mut ctx.accounts.facebook_account;
-        users_account_data.bump = *ctx.bumps.get("facebook_account").unwrap();
+        users_account_data.bump = ctx.bumps.facebook_account;
 
         users_account_data.authority = *ctx.accounts.signer.key;
         users_account_data.name = name.to_owned();

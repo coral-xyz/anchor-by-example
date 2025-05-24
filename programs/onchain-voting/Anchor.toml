@@ -1,15 +1,18 @@
+[toolchain]
+package_manager = "yarn"
+
 [features]
-seeds = false
+resolution = true
 skip-lint = false
 
-[programs.devnet]
-onchain_voting = "AkN2PoD2JrWyYzmB6FEbWBncQbsMxhYH5otfmQJFMsdC"
+[programs.localnet]
+onchain_voting = "9837jDBTMAxXToUDFcquVTd5zERanngPC1ihjXNPUiac"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

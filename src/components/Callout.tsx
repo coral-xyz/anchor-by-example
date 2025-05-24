@@ -1,8 +1,17 @@
+import { ReactNode } from 'react'
 import clsx from 'clsx'
 
-import { Icon } from '@/components/Icon'
+import { Icon, IconProps } from '@/components/Icon'
 
-const styles = {
+type CalloutType = 'note' | 'warning';
+
+interface StyleConfig {
+  container: string;
+  title: string;
+  body: string;
+}
+
+const styles: Record<CalloutType, StyleConfig> = {
   note: {
     container:
       'bg-sky-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10',
@@ -17,12 +26,18 @@ const styles = {
   },
 }
 
-const icons = {
+const icons: Record<CalloutType, React.FC<Omit<IconProps, 'icon'>>> = {
   note: (props) => <Icon icon="lightbulb" {...props} />,
   warning: (props) => <Icon icon="warning" color="amber" {...props} />,
 }
 
-export function Callout({ type = 'note', title, children }) {
+interface CalloutProps {
+  type?: CalloutType;
+  title: string;
+  children: ReactNode;
+}
+
+export function Callout({ type = 'note', title, children }: CalloutProps) {
   let IconComponent = icons[type]
 
   return (

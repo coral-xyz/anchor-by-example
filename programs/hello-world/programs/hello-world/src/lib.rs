@@ -1,7 +1,7 @@
 // use this import to gain access to common anchor features
 use anchor_lang::prelude::*;
 // Declare an address for your program a.k.a smart contract
-declare_id!("ThSq9qsRs6c6kBRrLJngezihMUgL86MdiDs4wNUi2F8");
+declare_id!("AorK8YHC6QQSqm4wUJauqCfMWMvm8iepTmjmwH9bYQtk");
 
 // write your business logic here
 #[program]

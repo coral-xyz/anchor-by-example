@@ -1,15 +1,18 @@
+[toolchain]
+package_manager = "yarn"
+
 [features]
-seeds = false
+resolution = true
 skip-lint = false
 
 [programs.localnet]
-hello_world = "ThSq9qsRs6c6kBRrLJngezihMUgL86MdiDs4wNUi2F8"
+hello_world = "AorK8YHC6QQSqm4wUJauqCfMWMvm8iepTmjmwH9bYQtk"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

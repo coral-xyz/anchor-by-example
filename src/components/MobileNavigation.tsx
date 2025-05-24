@@ -2,11 +2,16 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Dialog } from '@headlessui/react'
+import { NavigationSection } from '@/components/Layout'
 
 import { Logo } from '@/components/Logo'
 import { Navigation } from '@/components/Navigation'
 
-export function MobileNavigation({ navigation }) {
+interface MobileNavigationProps {
+  navigation: NavigationSection[]
+}
+
+export function MobileNavigation({ navigation }: MobileNavigationProps) {
   let router = useRouter()
   let [isOpen, setIsOpen] = useState(false)
 
@@ -64,11 +69,9 @@ export function MobileNavigation({ navigation }) {
                 <path d="M5 5l14 14M19 5l-14 14" />
               </svg>
             </button>
-            <Link href="/">
-              <a className="ml-6 block w-10 overflow-hidden lg:w-auto">
-                <span className="sr-only">Home page</span>
-                <Logo />
-              </a>
+            <Link href="/" className="ml-6 block w-10 overflow-hidden lg:w-auto">
+              <span className="sr-only">Home page</span>
+              <Logo />
             </Link>
           </div>
           <Navigation navigation={navigation} className="mt-5 px-1" />

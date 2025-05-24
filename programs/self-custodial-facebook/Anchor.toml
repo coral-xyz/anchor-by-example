@@ -1,14 +1,18 @@
+[toolchain]
+package_manager = "yarn"
+
 [features]
-seeds = true
+resolution = true
 skip-lint = false
-[programs.devnet]
-self_custodial_facebook = "8vBaXtoP9dBt97jA9FQz9NyuchRpFWEuiLxLLj7MYbnQ"
+
+[programs.localnet]
+self_custodial_facebook = "836QTT9zgw1SBiy9qcS9F9XMZcVdwvC2SjEbadZh9Tb2"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

@@ -1,19 +1,51 @@
 import Head from 'next/head'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
+import { AppProps } from 'next/app'
 
-import Prism from 'prism-react-renderer/prism' // prism is for code highlighting
-;(typeof global !== 'undefined' ? global : window).Prism = Prism
+// Declare Prism as any to avoid type issues
+declare global {
+  interface Window {
+    Prism: any;
+  }
+  namespace NodeJS {
+    interface Global {
+      Prism: any;
+    }
+  }
+}
 
-require('prismjs/components/prism-rust')
-require('prismjs/components/prism-toml')
-require('prismjs/components/prism-typescript')
+// Use dynamic import for Prism
+if (typeof window !== 'undefined') {
+  require('prismjs');
+  require('prismjs/components/prism-rust');
+  require('prismjs/components/prism-toml');
+  require('prismjs/components/prism-typescript');
+}
 
 import { Layout } from '@/components/Layout'
 
 import 'focus-visible'
-import '@/styles/tailwind.css'
+import '@/styles/global.css'
 
-const navigation = [
+type NavigationLink = {
+  title: string
+  href: string
+  active: boolean
+}
+
+type NavigationSection = {
+  title: string
+  links: NavigationLink[]
+}
+
+type TableOfContentsItem = {
+  id: string  // Make id required to match Layout component's expectations
+  title: string
+  children: TableOfContentsItem[]
+  [key: string]: any
+}
+
+const navigation: NavigationSection[] = [
   {
     title: 'Getting Started',
     links: [
@@ -81,44 +113,78 @@ const navigation = [
   },
 ]
 
-function getNodeText(node) {
+type Node = {
+  name?: string
+  attributes: Record<string, any>
+  children?: (Node | string)[]
+}
+
+function getNodeText(node: Node): string {
   let text = ''
   for (let child of node.children ?? []) {
     if (typeof child === 'string') {
       text += child
+    } else {
+      text += getNodeText(child)
     }
-    text += getNodeText(child)
   }
   return text
 }
 
-function collectHeadings(nodes, slugify = slugifyWithCounter()) {
-  let sections = []
+function collectHeadings(nodes: Node[], slugify = slugifyWithCounter()): TableOfContentsItem[] {
+  let sections: TableOfContentsItem[] = []
 
   for (let node of nodes) {
-    if (/^h[23]$/.test(node.name)) {
+    if (node.name && /^h[23]$/.test(node.name)) {
       let title = getNodeText(node)
       if (title) {
         let id = slugify(title)
         node.attributes.id = id
         if (node.name === 'h3') {
-          sections[sections.length - 1].children.push({
-            ...node.attributes,
-            title,
-          })
+          if (sections.length > 0) {
+            sections[sections.length - 1].children.push({
+              ...node.attributes,
+              title,
+              children: [],
+              id,  // Ensure id is always set
+            })
+          }
         } else {
-          sections.push({ ...node.attributes, title, children: [] })
+          sections.push({ 
+            ...node.attributes, 
+            title, 
+            children: [],
+            id,  // Ensure id is always set
+          })
         }
       }
     }
 
-    sections.push(...collectHeadings(node.children ?? [], slugify))
+    if (node.children) {
+      const childNodes = node.children.filter((child): child is Node => typeof child !== 'string')
+      if (childNodes.length > 0) {
+        sections.push(...collectHeadings(childNodes, slugify))
+      }
+    }
   }
 
   return sections
 }
 
-export default function App({ Component, pageProps }) {
+type ExtendedAppProps = AppProps & {
+  pageProps: {
+    markdoc?: {
+      frontmatter: {
+        title: string
+        pageTitle?: string
+        description?: string
+      }
+      content?: Node[]
+    }
+  }
+}
+
+export default function App({ Component, pageProps }: ExtendedAppProps) {
   let title = pageProps.markdoc?.frontmatter.title
 
   let pageTitle =
@@ -168,4 +234,4 @@ export default function App({ Component, pageProps }) {
       {/* </PlausibleProvider> */}
     </>
   )
-}
+} 

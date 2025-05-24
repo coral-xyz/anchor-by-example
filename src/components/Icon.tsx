@@ -1,4 +1,4 @@
-import { useId } from 'react'
+import { useId, SVGProps, ReactNode } from 'react'
 import clsx from 'clsx'
 
 import { InstallationIcon } from '@/components/icons/InstallationIcon'
@@ -7,6 +7,9 @@ import { PluginsIcon } from '@/components/icons/PluginsIcon'
 import { PresetsIcon } from '@/components/icons/PresetsIcon'
 import { ThemingIcon } from '@/components/icons/ThemingIcon'
 import { WarningIcon } from '@/components/icons/WarningIcon'
+
+export type IconName = 'installation' | 'presets' | 'plugins' | 'theming' | 'lightbulb' | 'warning';
+export type IconColor = 'blue' | 'amber';
 
 const icons = {
   installation: InstallationIcon,
@@ -23,7 +26,13 @@ const iconStyles = {
     '[--icon-foreground:theme(colors.amber.900)] [--icon-background:theme(colors.amber.100)]',
 }
 
-export function Icon({ color = 'blue', icon, className, ...props }) {
+export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'color'> {
+  color?: IconColor;
+  icon: IconName;
+  className?: string;
+}
+
+export function Icon({ color = 'blue', icon, className, ...props }: IconProps) {
   let id = useId()
   let IconComponent = icons[icon]
 
@@ -52,7 +61,11 @@ const gradients = {
   ],
 }
 
-export function Gradient({ color = 'blue', ...props }) {
+interface GradientProps extends SVGProps<SVGRadialGradientElement> {
+  color?: IconColor;
+}
+
+export function Gradient({ color = 'blue', ...props }: GradientProps) {
   return (
     <radialGradient
       cx={0}
@@ -68,10 +81,15 @@ export function Gradient({ color = 'blue', ...props }) {
   )
 }
 
-export function LightMode({ className, ...props }) {
-  return <g className={clsx('dark:hidden', className)} {...props} />
+interface ModeProps extends SVGProps<SVGGElement> {
+  className?: string;
+  children: ReactNode;
 }
 
-export function DarkMode({ className, ...props }) {
-  return <g className={clsx('hidden dark:inline', className)} {...props} />
+export function LightMode({ className, children, ...props }: ModeProps) {
+  return <g className={clsx('dark:hidden', className)} {...props}>{children}</g>
+}
+
+export function DarkMode({ className, children, ...props }: ModeProps) {
+  return <g className={clsx('hidden dark:inline', className)} {...props}>{children}</g>
 }

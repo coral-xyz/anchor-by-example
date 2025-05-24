@@ -1,6 +1,7 @@
 import { DarkMode, Gradient, LightMode } from '@/components/Icon'
+import { IconComponentProps } from '@/types'
 
-export function PresetsIcon({ id, color }) {
+export function PresetsIcon({ id, color }: IconComponentProps) {
   return (
     <>
       <defs>

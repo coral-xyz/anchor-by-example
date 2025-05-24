@@ -1,14 +1,25 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState, ReactNode } from 'react'
 import { Listbox } from '@headlessui/react'
 import clsx from 'clsx'
 
-const themes = [
+interface Theme {
+  name: string;
+  value: string;
+  icon: React.ComponentType<any>;
+}
+
+const themes: Theme[] = [
   { name: 'Light', value: 'light', icon: LightIcon },
   { name: 'Dark', value: 'dark', icon: DarkIcon },
   { name: 'System', value: 'system', icon: SystemIcon },
 ]
 
-function IconBase({ children, ...props }) {
+interface IconBaseProps {
+  children: ReactNode;
+  [key: string]: any;
+}
+
+function IconBase({ children, ...props }: IconBaseProps) {
   return (
     <svg aria-hidden="true" viewBox="0 0 16 16" {...props}>
       {children}
@@ -16,7 +27,7 @@ function IconBase({ children, ...props }) {
   )
 }
 
-function LightIcon(props) {
+function LightIcon(props: any) {
   return (
     <IconBase {...props}>
       <path
@@ -28,7 +39,7 @@ function LightIcon(props) {
   )
 }
 
-function DarkIcon(props) {
+function DarkIcon(props: any) {
   return (
     <IconBase {...props}>
       <path
@@ -40,7 +51,7 @@ function DarkIcon(props) {
   )
 }
 
-function SystemIcon(props) {
+function SystemIcon(props: any) {
   return (
     <IconBase {...props}>
       <path
@@ -52,8 +63,12 @@ function SystemIcon(props) {
   )
 }
 
-export function ThemeSelector(props) {
-  let [selectedTheme, setSelectedTheme] = useState()
+interface ThemeSelectorProps {
+  [key: string]: any;
+}
+
+export function ThemeSelector(props: ThemeSelectorProps) {
+  let [selectedTheme, setSelectedTheme] = useState<Theme | undefined>(undefined)
 
   useEffect(() => {
     if (selectedTheme) {

@@ -27,7 +27,7 @@ pub mod non_custodial_escrow {
     use super::*;
     pub fn initialize(ctx: Context<Initialize>, x_amount: u64, y_amount: u64) -> Result<()> {
         let escrow = &mut ctx.accounts.escrow;
-        escrow.bump = *ctx.bumps.get("escrow").unwrap();
+        escrow.bump = ctx.bumps.escrow;
         escrow.authority = ctx.accounts.seller.key();
         escrow.escrowed_x_tokens = ctx.accounts.escrowed_x_tokens.key();
         escrow.y_amount = y_amount; // number of token sellers wants in exchange

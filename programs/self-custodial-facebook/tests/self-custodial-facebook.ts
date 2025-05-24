@@ -1,6 +1,6 @@
-import * as anchor from '@project-serum/anchor'
-import { Program } from '@project-serum/anchor'
-import { SelfCustodialFacebook } from '../target/types/self_custodial_facebook'
+import * as anchor from "@coral-xyz/anchor";
+import { Program } from "@coral-xyz/anchor";
+import { SelfCustodialFacebook } from "../target/types/self_custodial_facebook";
 
 describe('self-custodial-facebook', () => {
   const provider = anchor.AnchorProvider.env()

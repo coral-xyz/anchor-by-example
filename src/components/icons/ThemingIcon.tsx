@@ -1,13 +1,14 @@
 import { DarkMode, Gradient, LightMode } from '@/components/Icon'
+import { IconComponentProps } from '@/types'
 
-export function WarningIcon({ id, color }) {
+export function ThemingIcon({ id, color }: IconComponentProps) {
   return (
     <>
       <defs>
         <Gradient
           id={`${id}-gradient`}
           color={color}
-          gradientTransform="rotate(65.924 1.519 20.92) scale(25.7391)"
+          gradientTransform="matrix(0 21 -21 0 12 11)"
         />
         <Gradient
           id={`${id}-gradient-dark`}
@@ -16,26 +17,30 @@ export function WarningIcon({ id, color }) {
         />
       </defs>
       <LightMode>
-        <circle cx={20} cy={20} r={12} fill={`url(#${id}-gradient)`} />
+        <circle cx={12} cy={20} r={12} fill={`url(#${id}-gradient)`} />
         <path
-          d="M3 16c0 7.18 5.82 13 13 13s13-5.82 13-13S23.18 3 16 3 3 8.82 3 16Z"
-          fillOpacity={0.5}
+          d="M27 12.13 19.87 5 13 11.87v14.26l14-14Z"
           className="fill-[var(--icon-background)] stroke-[color:var(--icon-foreground)]"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="m15.408 16.509-1.04-5.543a1.66 1.66 0 1 1 3.263 0l-1.039 5.543a.602.602 0 0 1-1.184 0Z"
-          className="fill-[var(--icon-foreground)] stroke-[color:var(--icon-foreground)]"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M16 23a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
           fillOpacity={0.5}
-          stroke="currentColor"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M3 3h10v22a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V3Z"
+          className="fill-[var(--icon-background)]"
+          fillOpacity={0.5}
+        />
+        <path
+          d="M3 9v16a4 4 0 0 0 4 4h2a4 4 0 0 0 4-4V9M3 9V3h10v6M3 9h10M3 15h10M3 21h10"
+          className="stroke-[color:var(--icon-foreground)]"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M29 29V19h-8.5L13 26c0 1.5-2.5 3-5 3h21Z"
+          fillOpacity={0.5}
           className="fill-[var(--icon-background)] stroke-[color:var(--icon-foreground)]"
           strokeWidth={2}
           strokeLinecap="round"
@@ -46,7 +51,7 @@ export function WarningIcon({ id, color }) {
         <path
           fillRule="evenodd"
           clipRule="evenodd"
-          d="M2 16C2 8.268 8.268 2 16 2s14 6.268 14 14-6.268 14-14 14S2 23.732 2 16Zm11.386-4.85a2.66 2.66 0 1 1 5.228 0l-1.039 5.543a1.602 1.602 0 0 1-3.15 0l-1.04-5.543ZM16 20a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+          d="M3 2a1 1 0 0 0-1 1v21a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H3Zm16.752 3.293a1 1 0 0 0-1.593.244l-1.045 2A1 1 0 0 0 17 8v13a1 1 0 0 0 1.71.705l7.999-8.045a1 1 0 0 0-.002-1.412l-6.955-6.955ZM26 18a1 1 0 0 0-.707.293l-10 10A1 1 0 0 0 16 30h13a1 1 0 0 0 1-1V19a1 1 0 0 0-1-1h-3ZM5 18a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H5Zm-1-5a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Zm1-7a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z"
           fill={`url(#${id}-gradient-dark)`}
         />
       </DarkMode>
