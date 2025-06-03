@@ -11,6 +11,15 @@ const nextConfig = withMarkdoc()({
     legacyBrowsers: false,
     images: { allowFutureImage: true },
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        destination: 'https://www.anchor-lang.com/docs/references/examples',
+        permanent: true,
+      },
+    ]
+  },
 })
 
 module.exports = withPlausibleProxy()(nextConfig)
