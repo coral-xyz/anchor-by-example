@@ -120,7 +120,7 @@ describe("onchain-voting", () => {
   });
 
   it("Vote for GN", async () => { 
-    const tx = await program.methods.gibVote({g:{}})
+    const tx = await program.methods.gibVote({gn:{}})
     .accounts({
       voteAccount: voteBank.publicKey,
     })
